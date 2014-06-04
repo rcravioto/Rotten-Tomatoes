@@ -1,10 +1,14 @@
 RottenMangoes::Application.routes.draw do
+  get "reviews/new"
+  get "reviews/create"
   get "sessions/new"
   get "sessions/create"
   get "users/new"
   get "users/create"
 
-  resources :movies 
+  resources :movies  do
+    resources :reviews, only: [:new, :create]
+  end
 
   resources :users, only: [:new, :create]
   
@@ -15,7 +19,7 @@ RottenMangoes::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'sessions#new'
+  root 'movies#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
