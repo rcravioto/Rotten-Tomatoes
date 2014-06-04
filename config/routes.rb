@@ -1,10 +1,21 @@
 RottenMangoes::Application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "users/new"
+  get "users/create"
+
   resources :movies 
+
+  resources :users, only: [:new, :create]
+  
+  resources :sessions, only: [:new, :create]
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'sessions#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
